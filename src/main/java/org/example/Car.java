@@ -4,11 +4,17 @@ public class Car {
 
   public String color;
 
-  public static String lable;
+  String plateNumber = "AA0000AA";
 
-  public final static String FINAL_STATIC_STRING = "finalString";
+  private String serialNumber = "GHASDIUH120398102938";
+
+  protected String carBrand = "Mazda";
 
   public void drive(String destination) {
-    System.out.println("This car is going to " + destination);
+    System.out.println("Car with serial number " + searialNo() + " is going to " + destination);
+  }
+
+  private String searialNo() {
+    return serialNumber.toUpperCase();
   }
 }
