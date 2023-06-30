@@ -1,4 +1,4 @@
-package org.prog;
+package org.prog.poly;
 
 import org.prog.poly.BMW;
 import org.prog.poly.Bolid;
