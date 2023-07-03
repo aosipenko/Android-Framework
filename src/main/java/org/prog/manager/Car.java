@@ -20,4 +20,9 @@ public class Car {
     public void setPlateNumber(String plateNumber) {
         this.plateNumber = plateNumber;
     }
+
+    @Override
+    public String toString() {
+        return "S/N " + serialNumber + " . Plates : " + plateNumber;
+    }
 }

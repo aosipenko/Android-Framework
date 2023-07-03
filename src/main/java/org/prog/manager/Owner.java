@@ -16,4 +16,9 @@ public class Owner {
     public String getLastName() {
         return this.lastName;
     }
+
+    @Override
+    public String toString() {
+        return name + " " + lastName;
+    }
 }

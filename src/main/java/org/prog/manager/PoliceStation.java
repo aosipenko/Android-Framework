@@ -54,18 +54,64 @@ public class PoliceStation {
     }
 
     public void printAvailableCars() {
-        //TODO: print all cars that have not been assigned to anyone
-        //TODO: If all cars have been assigned, print 'no cars available at the moment!'
+        if (!availableCars.isEmpty()) {
+            for (Car car : availableCars) {
+                System.out.println(car);
+            }
+        } else {
+            System.out.println("no cars available at the moment!");
+        }
     }
 
     public void printAllCarsThatHaveOwners() {
-        //TODO: print all cars that HAVE been assigned to anyone
-        //TODO: If NO cars have been assigned, print 'no cars assigned at the moment!'
+        if (!ownedCars.isEmpty()) {
+            for (Car car : ownedCars.keySet()) {
+                System.out.println(car);
+            }
+        } else {
+            System.out.println("no cars assigned at the moment!");
+        }
     }
 
     public void printOwnerOfACarWithCertainPlateNumbers(String plateNumber) {
-        //TODO: If plate number does not exist -> throw RuntimeException
-        //TODO: If plate number is found, but there is no owner -> print car with plate not assigned
-        //TODO: print owner of a car with plate numbers
+        boolean carIsAvailable = isPlateNumberPresent(availableCars, plateNumber);
+        boolean carIsOwned = isPlateNumberPresent(ownedCars.keySet(), plateNumber);
+
+        if (!(carIsAvailable || carIsOwned)) {
+            throw new RuntimeException("No such plate number found! " + plateNumber);
+        }
+
+        if (carIsAvailable && carIsOwned) {
+            throw new RuntimeException("Car is in both lists! " + plateNumber);
+        }
+
+        if (carIsAvailable) {
+            System.out.println(getCarByPlateNumber(availableCars, plateNumber));
+        } else {
+            Car car = getCarByPlateNumber(ownedCars.keySet(), plateNumber);
+            System.out.println(ownedCars.get(car));
+        }
+    }
+
+    private String getCarPlates(Car car) {
+        return car.getPlateNumber();
+    }
+
+    private boolean isPlateNumberPresent(Collection<Car> cars, String plateNumber) {
+        for (Car car : cars) {
+            if (getCarPlates(car).equals(plateNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Car getCarByPlateNumber(Collection<Car> cars, String plateNumber) {
+        for (Car car : cars) {
+            if (getCarPlates(car).equals(plateNumber)) {
+                return car;
+            }
+        }
+        throw new RuntimeException("You're doing wrong!");
     }
 }
