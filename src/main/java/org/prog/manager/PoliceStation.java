@@ -97,6 +97,32 @@ public class PoliceStation {
         return car.getPlateNumber();
     }
 
+    public List<Car> getCarsOwnedByPerson(String name) {
+        if (owners.isEmpty()) {
+            throw new RuntimeException("No owners registered!");
+        }
+
+        Owner owner = null;
+        for (Owner o : owners) {
+            if (o.getName().equals(name)) {
+                owner = o;
+                break;
+            }
+        }
+
+        if (owner != null) {
+            List<Car> ownedCars = new ArrayList<>();
+            for (Map.Entry<Car, Owner> entry : this.ownedCars.entrySet()) {
+                if (entry.getValue().equals(owner)) {
+                    ownedCars.add(entry.getKey());
+                }
+            }
+            return ownedCars;
+        } else {
+            throw new RuntimeException("No owner with name " + name + " found!");
+        }
+    }
+
     private boolean isPlateNumberPresent(Collection<Car> cars, String plateNumber) {
         for (Car car : cars) {
             if (getCarPlates(car).equals(plateNumber)) {
