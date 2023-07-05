@@ -1,7 +1,5 @@
 package org.prog.manager;
 
-import java.util.List;
-
 public class CodeDemo {
 
     //TODO: here or in class fields add plate numbers to all cars
@@ -16,24 +14,24 @@ public class CodeDemo {
     private static final Owner alice = new Owner("Alice", "Alice");
     private static final Owner susan = new Owner("Susan", "Susan");
 
+    private PoliceStation policeStation;
 
-    public static void main(String[] args) {
-        PoliceStation policeStation = new PoliceStation();
+    public PoliceStation getStation() {
+        return policeStation;
+    }
+
+    public void init() {
+        policeStation = new PoliceStation();
         fillPoliceDB(policeStation);
 
         policeStation.assignOwner(carOne, alice);
         policeStation.assignOwner(carTwo, alice);
         policeStation.assignOwner(carThree, bob);
         policeStation.assignOwner(carFour, ben);
-        policeStation.assignOwner(carFive, susan);
-
-        List<Car> cars = policeStation.getCarsOwnedByPerson("Bob");
-        for (Car car : cars) {
-            System.out.println(car);
-        }
+//        policeStation.assignOwner(carFive, susan);
     }
 
-    private static void fillPoliceDB(PoliceStation policeStation) {
+    private void fillPoliceDB(PoliceStation policeStation) {
         carOne.setPlateNumber("AA0000AA");
         carTwo.setPlateNumber("BB0000BB");
         carThree.setPlateNumber("CC0000CC");

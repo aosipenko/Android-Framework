@@ -73,6 +73,9 @@ public class PoliceStation {
         }
     }
 
+    //TODO: make this method return owner of car with plate number
+    //TODO: if car not assigned -> exception
+    //TODO: add test cases
     public void printOwnerOfACarWithCertainPlateNumbers(String plateNumber) {
         boolean carIsAvailable = isPlateNumberPresent(availableCars, plateNumber);
         boolean carIsOwned = isPlateNumberPresent(ownedCars.keySet(), plateNumber);
