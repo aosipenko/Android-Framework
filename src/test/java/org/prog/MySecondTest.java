@@ -6,24 +6,29 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 public class MySecondTest {
     private AppiumDriver driver;
 
     @BeforeSuite
     public void setupDriver() throws MalformedURLException {
-        File appFile = new File("app-debug.apk");
+        String appPackage = System.getProperty("package", "com.example.basicactivity");
+        String appActivity = System.getProperty("activity", "MainActivity");
+        String appFileName = System.getProperty("appFile", "app-debug.apk");
+        File appFile = new File(appFileName);
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("appPackage", "com.example.basicactivity");
-        capabilities.setCapability("appActivity", "com.example.basicactivity.MainActivity");
+        capabilities.setCapability("appPackage", appPackage);
+        capabilities.setCapability("appActivity", appPackage + "." + appActivity);
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("automationName", AutomationName.ANDROID_UIAUTOMATOR2);
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
@@ -32,7 +37,7 @@ public class MySecondTest {
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/"), capabilities);
     }
 
-    @Test
+    //    @Test
     public void clickNextAndBackButtons() {
         WebElement btnNext = driver.findElement(By.id("bnt_next"));
         btnNext.click();
@@ -45,6 +50,14 @@ public class MySecondTest {
         Assert.assertEquals(textContainer.getText(), "First text fragment");
     }
 
+    //    @Test
+    public void popupTest() {
+        WebElement mailIcon = driver.findElement(By.id("fab"));
+        mailIcon.click();
+        WebElement popupWindow = new WebDriverWait(driver, Duration.ofSeconds(10L))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='Replace with your own action']")));
+        Assert.assertTrue(popupWindow.isDisplayed());
+    }
 
     @AfterSuite
     public void tearDown() {
