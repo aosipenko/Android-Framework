@@ -37,6 +37,10 @@ public class MySecondTest {
         firstPage.waitForPopup("Replace with your own action");
     }
 
+    public void smth(){
+
+    }
+
     @AfterSuite
     public void tearDown() {
         driver.quit();
