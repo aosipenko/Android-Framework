@@ -59,6 +59,10 @@ public class MySecondTest {
         Assert.assertTrue(popupWindow.isDisplayed());
     }
 
+    public void smth(){
+
+    }
+
     @AfterSuite
     public void tearDown() {
         driver.quit();
