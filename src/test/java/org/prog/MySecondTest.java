@@ -38,7 +38,7 @@ public class MySecondTest {
     }
 
     public void smth(){
-
+        System.out.println("test!");
     }
 
     @AfterSuite
