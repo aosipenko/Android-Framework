@@ -11,3 +11,8 @@ Feature: demo our dummy app
     Given First Page is loaded
     When I click on "EMAIL" button
     Then I see popup with text "Replace with your own action"
+
+#  login
+#  password
+#  btn_login
+#  Loggin in as %s : %s
