@@ -15,12 +15,11 @@ public class DriverFactory {
     private final String appActivity;
     private final String appFileName;
     private static final DriverFactory instance = new DriverFactory();
-//    driver = DriverFactory.getInstance().getDriver(DriverType.APPIUM_LOCAL);
 
     private DriverFactory() {
         this.appPackage = System.getProperty("package", "com.example.basicactivity");
         this.appActivity = System.getProperty("activity", "MainActivity");
-        this.appFileName = System.getProperty("appFile", "app-debug.apk");
+        this.appFileName = System.getProperty("appFile", "app-debug-androidTest.apk");
     }
 
     public static DriverFactory getInstance() {

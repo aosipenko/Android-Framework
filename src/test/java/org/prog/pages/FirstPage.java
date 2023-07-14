@@ -21,18 +21,4 @@ public class FirstPage extends AbstractPage {
     public String getTextContent() {
         return driver.findElement(By.id("textview_first")).getText();
     }
-
-//    public void loginToPortmone(String username, String password){
-//        WebElement userNameElement;
-//        userNameElement.sendKeys(username);
-//        WebElement passwordElement;
-//        passwordElement.sendKeys(password);
-//        WebElement loginButton;
-//        loginButton.click();
-//        new WebDriverWait(null, Duration.ofSeconds(30L))
-//                .until(ExpectedConditions.presenceOfElementLocated(By.id("loadingThing")));
-//        new WebDriverWait(null, Duration.ofSeconds(30L))
-//                .until(ExpectedConditions.invisibilityOfElementLocated(By.id("loadingThing")));
-//    }
-
 }

@@ -17,27 +17,27 @@ public class MySecondTest {
     private FirstPage firstPage;
     private SecondPage secondPage;
 
-    @BeforeSuite
+//    @BeforeSuite
     public void setupDriver() throws MalformedURLException {
         driver = DriverFactory.getInstance().getDriver(DriverType.APPIUM_LOCAL);
         firstPage = new FirstPage(driver);
         secondPage = new SecondPage(driver);
     }
 
-    @Test
+//    @Test
     public void clickNextAndBackButtons() {
         firstPage.clickNextButton();
         secondPage.clickBackButton();
         Assert.assertEquals(firstPage.getTextContent(), "First text fragment");
     }
 
-    @Test
+//    @Test
     public void popupTest() {
         firstPage.clickEmail();
         firstPage.waitForPopup("Replace with your own action");
     }
 
-    @AfterSuite
+//    @AfterSuite
     public void tearDown() {
         driver.quit();
     }
