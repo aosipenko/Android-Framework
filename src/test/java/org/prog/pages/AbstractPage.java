@@ -27,4 +27,8 @@ public abstract class AbstractPage {
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//*[@text='%s']", popupText))));
         Assert.assertTrue(popupWindow.isDisplayed());
     }
+
+    public WebElement getElementWithText(String elementType, String elementText) {
+        return driver.findElement(By.xpath(String.format("//%s[@text='%s']", elementType, elementText)));
+    }
 }

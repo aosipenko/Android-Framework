@@ -6,7 +6,6 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverFactory {
@@ -26,14 +25,18 @@ public class DriverFactory {
         return instance;
     }
 
-    public AppiumDriver getDriver(DriverType driverType) throws MalformedURLException {
+    public AppiumDriver getDriver(DriverType driverType) {
         DesiredCapabilities capabilities = capabilities(driverType);
-        if (DriverType.APPIUM_LOCAL.equals(driverType)) {
-            capabilities.acceptInsecureCerts();
-            return new AppiumDriver(new URL("http://127.0.0.1:4723/"), capabilities);
-        } else {
-            capabilities.setPlatform(Platform.ANY);
-            return new AppiumDriver(new URL("http://remote.appium.com:4723/"), capabilities);
+        try {
+            if (DriverType.APPIUM_LOCAL.equals(driverType)) {
+                capabilities.acceptInsecureCerts();
+                return new AppiumDriver(new URL("http://127.0.0.1:4723/"), capabilities);
+            } else {
+                capabilities.setPlatform(Platform.ANY);
+                return new AppiumDriver(new URL("http://remote.appium.com:4723/"), capabilities);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
