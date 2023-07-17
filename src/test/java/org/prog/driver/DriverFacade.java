@@ -1,6 +1,7 @@
 package org.prog.driver;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,7 +15,7 @@ public class DriverFacade {
 
     private final static DriverFacade instance = new DriverFacade();
 
-    private final AppiumDriver driver;
+    private final AndroidDriver driver;
 
     private DriverFacade() {
         this.driver = DriverFactory.getInstance().getDriver(DriverType.APPIUM_LOCAL);
@@ -24,7 +25,7 @@ public class DriverFacade {
         return instance;
     }
 
-    public AppiumDriver getDriver() {
+    public AndroidDriver getDriver() {
         return this.driver;
     }
 

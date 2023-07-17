@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.prog.driver.DriverFacade;
 import org.prog.pages.FirstPage;
 import org.prog.pages.SecondPage;
+import org.prog.pages.elements.AndroidElement;
 import org.testng.Assert;
 
 public class AndroidSteps {
@@ -42,5 +43,25 @@ public class AndroidSteps {
     @Then("I see popup with text {string}")
     public void iSeePopupWithText(String popupValue) {
         firstPage.waitForPopup(popupValue);
+    }
+
+    @When("I do some stuff in WidgetOne")
+    public void someWidgetAction() {
+        firstPage.onWidgetOne().anotherWidgetAction();
+    }
+
+    @Given("i set {} element value to {string}")
+    public void iSetLoginInputTo(AndroidElement element, String value) {
+        firstPage.setFieldValue(element, value);
+    }
+
+    @When("i click login button")
+    public void iClickLoginButton() {
+        firstPage.clickLoginBtn();
+    }
+
+    @When("check number {int}")
+    public void smth(int param){
+
     }
 }

@@ -1,6 +1,7 @@
 package org.prog.appium.driver;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -18,22 +19,22 @@ public class DriverFactory {
     private DriverFactory() {
         this.appPackage = System.getProperty("package", "com.example.basicactivity");
         this.appActivity = System.getProperty("activity", "MainActivity");
-        this.appFileName = System.getProperty("appFile", "app-debug-androidTest.apk");
+        this.appFileName = System.getProperty("appFile", "app-debug.apk");
     }
 
     public static DriverFactory getInstance() {
         return instance;
     }
 
-    public AppiumDriver getDriver(DriverType driverType) {
+    public AndroidDriver getDriver(DriverType driverType) {
         DesiredCapabilities capabilities = capabilities(driverType);
         try {
             if (DriverType.APPIUM_LOCAL.equals(driverType)) {
                 capabilities.acceptInsecureCerts();
-                return new AppiumDriver(new URL("http://127.0.0.1:4723/"), capabilities);
+                return new AndroidDriver(new URL("http://127.0.0.1:4723/"), capabilities);
             } else {
                 capabilities.setPlatform(Platform.ANY);
-                return new AppiumDriver(new URL("http://remote.appium.com:4723/"), capabilities);
+                return new AndroidDriver(new URL("http://remote.appium.com:4723/"), capabilities);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

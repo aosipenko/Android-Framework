@@ -5,14 +5,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.prog.pages.elements.AndroidElement;
 import org.testng.Assert;
 
 import java.time.Duration;
 
 public class FirstPage extends AbstractPage {
 
+    private final WidgetOne widgetOne;
+    private final WidgetTwo widgetTwo;
+
     public FirstPage(AppiumDriver appiumDriver) {
         super(appiumDriver);
+        this.widgetOne = new WidgetOne(appiumDriver);
+        this.widgetTwo = new WidgetTwo(appiumDriver);
     }
 
     public void clickNextButton() {
@@ -29,5 +35,21 @@ public class FirstPage extends AbstractPage {
 
     public String getTextContent() {
         return driver.findElement(By.id("textview_first")).getText();
+    }
+
+    public WidgetOne onWidgetOne() {
+        return this.widgetOne;
+    }
+
+    public WidgetTwo onWidgetTwo() {
+        return this.widgetTwo;
+    }
+
+    public void setFieldValue(AndroidElement element, String value) {
+        setInputText(element.getLocator(), value);
+    }
+
+    public void clickLoginBtn() {
+        driver.findElement(By.id("btn_login")).click();
     }
 }

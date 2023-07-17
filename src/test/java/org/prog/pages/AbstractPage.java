@@ -31,4 +31,8 @@ public abstract class AbstractPage {
     public WebElement getElementWithText(String elementType, String elementText) {
         return driver.findElement(By.xpath(String.format("//%s[@text='%s']", elementType, elementText)));
     }
+
+    public void setInputText(By locator, CharSequence value) {
+        driver.findElement(locator).sendKeys(value);
+    }
 }
