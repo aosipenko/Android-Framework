@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "name": {
+        "title": "Miss",
+        "first": "Yi",
+        "last": "Hols"
+      },
+      "login": {
+        "uuid": "f41522bb-4700-440e-8202-5f64de2ef510",
+        "username": "bluegoose979",
+        "password": "191919",
+        "salt": "Bbdqb6Wi",
+        "md5": "8f1abcf1dc65694a1497bb8cd7bb07c4",
+        "sha1": "d67413fcdb0fba5d283ca9561c3fc6bff0942c70",
+        "sha256": "a60f5c09ae4ff368ab3da9208fb01396da91d14ab92fd366e11cfb3197999d28"
+      }
+    }
+  ]
+}

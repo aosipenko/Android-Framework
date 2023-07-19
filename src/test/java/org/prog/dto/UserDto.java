@@ -1,0 +1,16 @@
+package org.prog.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDto {
+
+    private String gender;
+    private String nat;
+    private NameDto name;
+
+}

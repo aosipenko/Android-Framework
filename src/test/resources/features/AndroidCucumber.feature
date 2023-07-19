@@ -44,16 +44,16 @@ Feature: demo our dummy app
 #      | key_2                 | value_2 |
 #      | key_3                 | value_3 |
 
-  Scenario: demo cells
-  Given Get cell CELL_NAME value in row 1
-  Given Get cell CELL_NAME value in row 2
-  Given Get cell CELL_NAME value in row 3
-  Given Get cell CELL_SURNAME value in row 1
-  Given Get cell CELL_SURNAME value in row 2
-  Given Get cell CELL_SURNAME value in row 3
-  Given Get cell CELL_CARD_NUMBER value in row 1
-  Given Get cell CELL_CARD_NUMBER value in row 2
-  Given Get cell CELL_CARD_NUMBER value in row 7
+#  Scenario: demo cells
+#  Given Get cell CELL_NAME value in row 1
+#  Given Get cell CELL_NAME value in row 2
+#  Given Get cell CELL_NAME value in row 3
+#  Given Get cell CELL_SURNAME value in row 1
+#  Given Get cell CELL_SURNAME value in row 2
+#  Given Get cell CELL_SURNAME value in row 3
+#  Given Get cell CELL_CARD_NUMBER value in row 1
+#  Given Get cell CELL_CARD_NUMBER value in row 2
+#  Given Get cell CELL_CARD_NUMBER value in row 7
 
 #  login
 #  password

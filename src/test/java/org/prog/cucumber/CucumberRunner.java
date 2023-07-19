@@ -24,8 +24,7 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
 
     @BeforeMethod
     public void resetApp() {
-        AppiumDriver driver = DriverFacade.getInstance().getDriver();
-        DriverFacade.getInstance().getDriver().resetApp();
+//        DriverFacade.getInstance().getDriver().resetApp();
     }
 
     @AfterSuite

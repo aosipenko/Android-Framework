@@ -1,4 +1,4 @@
-package org.prog;
+package org.prog.steps;
 
 import io.appium.java_client.AppiumDriver;
 import org.prog.appium.driver.DriverFactory;
