@@ -1,42 +1,75 @@
 package org.prog.steps;
 
+import com.beust.ah.A;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import lombok.SneakyThrows;
 import org.apache.hc.core5.http.HttpEntity;
-import org.apache.hc.core5.http.ParseException;
+import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
-import org.prog.dto.NameDto;
+import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.prog.dto.ResultsDto;
+import org.prog.rest.RestClient;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ApacheSteps {
 
-    @Given("I make test Apache Request")
-    public void makeApacheRequest() throws URISyntaxException, IOException, ParseException {
-        HttpEntity entity = performReqeust();
-        String jsonResponse = EntityUtils.toString(entity);
-        System.out.println(jsonResponse);
-        ResultsDto dto = mapper().readValue(jsonResponse, ResultsDto.class);
-        dto.getResults().forEach(r -> System.out.println(r.getName().getFirst()));
+    private final RestClient restClient = new RestClient();
 
-        System.out.println("=============================");
+    private static String hostName;
+    private static String requestPath;
+    private static List<NameValuePair> queryParams;
+    private static HttpEntity responseEntity;
 
-        String objectAsString = mapper().writeValueAsString(new NameDto("test", "test", "test"));
-        System.out.println(objectAsString);
+    private static List<ResultsDto> dtos;
+
+    @Given("A request to {string}")
+    public void setRequestHost(String host) {
+        hostName = host;
     }
 
-    private HttpEntity performReqeust() throws IOException, URISyntaxException {
-        CloseableHttpClient client = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet(new URI("https://randomuser.me/api/?inc=gender,name,nat&noinfo&results=10"));
-        httpGet.setHeader("asd", "asd");
-//        httpGet.setEntity(EntityBuilder.create().setText("test").build());
-        return client.execute(httpGet).getEntity();
+    @Given("A request with path {string}")
+    public void setRequestPath(String path) {
+        requestPath = path;
+    }
+
+    @Given("A request with queryParams")
+    public void setRequestPath(DataTable dataTable) {
+        if (queryParams == null) {
+            queryParams = new ArrayList<>();
+        }
+        dataTable.asMap().entrySet().stream().forEach(
+                entry -> queryParams.add(new BasicNameValuePair(entry.getKey(), entry.getValue())));
+    }
+
+    @When("execute this request")
+    public void executeRequest() {
+        responseEntity = restClient.doGet(hostName, requestPath, queryParams);
+    }
+
+    @SneakyThrows
+    @Then("i see list of names")
+    public void printNames() {
+        ResultsDto dto = mapper().readValue(EntityUtils.toString(responseEntity), ResultsDto.class);
+        if (dtos == null){
+            dtos = new ArrayList<>();
+        }
+        dtos.add(dto);
+        dto.getResults().forEach(r -> System.out.println(r.getName().getFirst()));
+    }
+
+    @Given("reset request state")
+    public void resetState() {
+        hostName = null;
+        requestPath = null;
+        if (queryParams != null) {
+            queryParams.clear();
+        }
     }
 
     private ObjectMapper mapper() {
