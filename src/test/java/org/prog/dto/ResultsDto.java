@@ -12,19 +12,5 @@ import java.util.List;
 public class ResultsDto {
 
     private List<UserDto> results;
-//
-//    public ResultsDto() {
-//    }
-//
-//    public ResultsDto(List<UserDto> results) {
-//        this.results = results;
-//    }
-//
-//    public List<UserDto> getResults() {
-//        return results;
-//    }
-//
-//    public void setResults(List<UserDto> results) {
-//        this.results = results;
-//    }
+
 }

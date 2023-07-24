@@ -1,6 +1,6 @@
 Feature: better steps
 
-#  Scenario: better apache stuff
+  Scenario: better apache stuff
 #    Given A request to "google.com" as "GOOGLE_SERVICE"
 #    Given A path "/search/" as "SEARCH_ENDPOINT"
 #    Given A request to "randomuser.me" as "RANDOM_USER_SERVICE"
@@ -19,11 +19,11 @@ Feature: better steps
 #    Then Print response "FIVE_USERS_RESPONSE"
 #    Then Print response "TEN_USERS_RESPONSE"
 
-  Scenario: DataHolderV2 demo
-    Given Store Name object with alias "name_1"
-    Given Store String object with alias "name_1"
-    Then Print name object "name_1"
-    Then Print string object "name_1"
+#  Scenario: DataHolderV2 demo
+#    Given Store Name object with alias "name_1"
+#    Given Store String object with alias "name_1"
+#    Then Print name object "name_1"
+#    Then Print string object "name_1"
 #    Given i generate access token for "user_1"
 #    Given i generate access token for "user_2"
 #    Given i retrieve banking data for "user_1"
