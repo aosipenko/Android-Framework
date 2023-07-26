@@ -33,6 +33,7 @@ public abstract class AbstractPage {
     }
 
     public void setInputText(By locator, CharSequence value) {
-        driver.findElement(locator).sendKeys(value);
+        new WebDriverWait(driver, Duration.ofSeconds(30L))
+                .until(ExpectedConditions.presenceOfElementLocated(locator)).sendKeys(value);
     }
 }
