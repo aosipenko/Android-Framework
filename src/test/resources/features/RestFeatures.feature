@@ -2,7 +2,7 @@ Feature: REST tests
 
 #  Background:
 #    Given reset request state
-
+#
 #  Scenario: Basic Rest Scenario
 #    Given A request to "randomuser.me"
 #    Given A request with path "/api/"

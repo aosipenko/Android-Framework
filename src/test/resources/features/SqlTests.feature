@@ -1,6 +1,6 @@
 Feature: SQL tests
 
-  Scenario: SQL CRUD demo
+#  Scenario: SQL CRUD demo
 #    Given I add user with name "Jane" last name "Doe" title "Mrs" gender "female"
 #    Given I read data from DB
 #    Given A request to "randomuser.me" as "RANDOM_USER_SERVICE"
