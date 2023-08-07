@@ -8,14 +8,14 @@ import org.testng.annotations.Test;
 public class TestSuiteThree {
     @Test
     @Severity(SeverityLevel.CRITICAL)
-    @Epic("321")
+    @Epic("E-321")
     public void myTestOne() {
         printString("One success!");
     }
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
-    @Epic("123")
+    @Epic("E-123")
     public void myTestTwo() {
         printString("Two success!");
     }
