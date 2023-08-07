@@ -3,7 +3,6 @@ package org.prog.test;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TestSuiteTwo {
@@ -43,7 +42,7 @@ public class TestSuiteTwo {
         if (s != null) {
             System.out.println(s);
         } else {
-            Assert.fail("String may not be emtpy");
+            throw new RuntimeException();
         }
     }
 }
