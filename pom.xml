@@ -43,6 +43,18 @@
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>8.5.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>4.11.0</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>

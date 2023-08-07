@@ -3,6 +3,7 @@ package org.prog.appium.driver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.federatedcredentialmanagement.HasFederatedCredentialManagement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
