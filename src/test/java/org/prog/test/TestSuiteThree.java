@@ -1,5 +1,6 @@
 package org.prog.test;
 
+import io.qameta.allure.Link;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
@@ -21,18 +22,20 @@ public class TestSuiteThree {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
+    @Link("QA-56789")
     public void myTestThree() {
         printString("Three success!");
     }
 
     @Test
     @Severity(SeverityLevel.TRIVIAL)
+    @Link("QA-12345")
     public void myTestFour() {
         printString(null);
     }
 
     @Step("Print string {s}")
-    private void printString(String s) {
+    public void printString(String s) {
         if (s != null) {
             System.out.println(s);
         } else {

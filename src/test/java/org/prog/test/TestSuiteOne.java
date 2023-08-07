@@ -1,5 +1,6 @@
 package org.prog.test;
 
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
@@ -28,12 +29,13 @@ public class TestSuiteOne {
 
     @Test
     @Severity(SeverityLevel.CRITICAL)
+    @Flaky
     public void myTestFour() {
         printString(null);
     }
 
     @Step("Print string {s}")
-    private void printString(String s) {
+    public void printString(String s) {
         if (s != null) {
             System.out.println(s);
         } else {

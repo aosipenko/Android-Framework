@@ -38,7 +38,7 @@ public class TestSuiteTwo {
     }
 
     @Step("Print string {s}")
-    private void printString(String s) {
+    public void printString(String s) {
         if (s != null) {
             System.out.println(s);
         } else {
