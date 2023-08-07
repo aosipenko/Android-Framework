@@ -12,6 +12,7 @@ import org.prog.dto.ResultsDto;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RestSteps {
 
@@ -40,7 +41,7 @@ public class RestSteps {
         Response response = requestSpecification.get("https://randomuser.me/api/?inc=login,name&noinfo&results=30");
         ResultsDto resultsDto = response.as(ResultsDto.class);
         resultsDto.getResults().forEach(r -> System.out.println(r.getName().getFirst()));
-        resultsDto.getResults().stream().filter(r -> r.getGender().equalsIgnoreCase("male")).toList();
+        resultsDto.getResults().stream().filter(r -> r.getGender().equalsIgnoreCase("male")).collect(Collectors.toList());
     }
 }
 

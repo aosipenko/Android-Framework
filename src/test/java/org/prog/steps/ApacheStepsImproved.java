@@ -15,6 +15,7 @@ import org.prog.rest.RestClient;
 import org.prog.util.DataHolder;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ApacheStepsImproved {
 
@@ -33,7 +34,8 @@ public class ApacheStepsImproved {
     @Given("Query params {string}:")
     public void addParams(String alias, DataTable dataTable) {
         List<BasicNameValuePair> queryParams = dataTable.asMap().entrySet().stream().map(
-                entry -> new BasicNameValuePair(entry.getKey(), entry.getValue())).toList();
+                entry -> new BasicNameValuePair(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
         DataHolder.getInstance().add(alias, queryParams);
     }
 
