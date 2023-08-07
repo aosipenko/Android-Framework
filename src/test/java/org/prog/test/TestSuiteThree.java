@@ -8,12 +8,14 @@ import org.testng.annotations.Test;
 public class TestSuiteThree {
     @Test
     @Severity(SeverityLevel.CRITICAL)
+    @Epic("321")
     public void myTestOne() {
         printString("One success!");
     }
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
+    @Epic("123")
     public void myTestTwo() {
         printString("Two success!");
     }
@@ -21,7 +23,7 @@ public class TestSuiteThree {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Link(name = "QA-56789", url = "https://google.com/")
-    @Epic("E-456312")
+    @Epics({@Epic("E-321"), @Epic("E-123")})
     public void myTestThree() {
         printString("Three success!");
     }
