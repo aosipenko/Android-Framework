@@ -22,14 +22,14 @@ public class TestSuiteThree {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Link("QA-56789")
+    @Link(name = "QA-56789", url = "https://google.com/")
     public void myTestThree() {
         printString("Three success!");
     }
 
     @Test
     @Severity(SeverityLevel.TRIVIAL)
-    @Link("QA-12345")
+    @Link(name = "QA-12345", url = "https://google.com/")
     public void myTestFour() {
         printString(null);
     }
