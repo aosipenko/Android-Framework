@@ -12,6 +12,7 @@ import org.prog.dto.NameDto;
 import org.prog.dto.ResultsDto;
 import org.prog.dto.UserDto;
 import org.prog.util.DataHolder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 
 import java.sql.Connection;
@@ -25,12 +26,15 @@ import java.util.Random;
 
 public class SqlSteps {
 
+    @Autowired
+    private DataHolder dataHolder;
+
     private final Random random = new Random();
 
     @SneakyThrows
     @When("I store {string} in DB")
     public void storeUserSetToDb(String alias) {
-        HttpEntity entity = DataHolder.getInstance().getWithDynamicType(alias);
+        HttpEntity entity = dataHolder.getWithDynamicType(alias);
         ResultsDto dto = mapper().readValue(EntityUtils.toString(entity), ResultsDto.class);
         dto.getResults().forEach(r -> {
             try {
@@ -99,7 +103,7 @@ public class SqlSteps {
                 resultSet.close();
             }
         }
-        DataHolder.getInstance().add(alias, userDtos.get(random.nextInt(userDtos.size())));
+        dataHolder.add(alias, userDtos.get(random.nextInt(userDtos.size())));
     }
 
     @Given("I remove data from DB")
@@ -156,7 +160,7 @@ public class SqlSteps {
 
     @Then("I print {string}")
     public void iPrint(String alias) {
-        UserDto dto = DataHolder.getInstance().getWithDynamicType(alias);
+        UserDto dto = dataHolder.getWithDynamicType(alias);
         System.out.println(dto.getName().getFirst() + " " + dto.getName().getLast());
         System.out.println(dto.getLogin().getUsername() + " " + dto.getLogin().getPassword());
     }

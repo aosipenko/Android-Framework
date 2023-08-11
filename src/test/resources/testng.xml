@@ -6,14 +6,14 @@
     </listeners>
     <test name="Regression1">
         <classes>
-            <!--            <class name="org.prog.cucumber.CucumberRunner"/>-->
-            <class name="org.prog.test.TestSuiteOne"/>
-            <class name="org.prog.test.TestSuiteTwo"/>
+                        <class name="org.prog.cucumber.CucumberRunner"/>
+<!--            <class name="org.prog.test.TestSuiteOne"/>-->
+<!--            <class name="org.prog.test.TestSuiteTwo"/>-->
         </classes>
     </test>
-    <test name="Regression2">
-        <classes>
-            <class name="org.prog.test.TestSuiteThree"/>
-        </classes>
-    </test>
+<!--    <test name="Regression2">-->
+<!--        <classes>-->
+<!--            <class name="org.prog.test.TestSuiteThree"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

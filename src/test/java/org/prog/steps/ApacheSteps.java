@@ -1,6 +1,5 @@
 package org.prog.steps;
 
-import com.beust.ah.A;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -11,13 +10,28 @@ import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
+import org.prog.beans.MyBean;
 import org.prog.dto.ResultsDto;
 import org.prog.rest.RestClient;
+import org.prog.util.DataHolder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ApacheSteps {
+    @Autowired
+    @Qualifier("beanOne")
+    private MyBean beanOne;
+
+    @Autowired
+    @Qualifier("beanTwo")
+    private MyBean beanTwo;
+
+
+    @Autowired
+    private DataHolder dataHolder;
 
     private final RestClient restClient = new RestClient();
 
@@ -56,7 +70,7 @@ public class ApacheSteps {
     @Then("i see list of names")
     public void printNames() {
         ResultsDto dto = mapper().readValue(EntityUtils.toString(responseEntity), ResultsDto.class);
-        if (dtos == null){
+        if (dtos == null) {
             dtos = new ArrayList<>();
         }
         dtos.add(dto);
@@ -70,6 +84,16 @@ public class ApacheSteps {
         if (queryParams != null) {
             queryParams.clear();
         }
+    }
+
+    @SneakyThrows
+    @Then("Print response {string}")
+    public void printResponse(String responseAlias) {
+        System.out.println("My bean value " + beanOne.getBeanValue());
+        System.out.println("My bean value " + beanTwo.getBeanValue());
+        HttpEntity responseEntity = dataHolder.getWithDynamicType(responseAlias);
+        ResultsDto dto = mapper().readValue(EntityUtils.toString(responseEntity), ResultsDto.class);
+        dto.getResults().forEach(r -> System.out.println(r.getName().getFirst()));
     }
 
     private ObjectMapper mapper() {

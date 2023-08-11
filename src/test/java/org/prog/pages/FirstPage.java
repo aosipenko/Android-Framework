@@ -1,24 +1,26 @@
 package org.prog.pages;
 
-import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.prog.appium.driver.DriverFactory;
 import org.prog.pages.elements.AndroidElement;
+import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
 import java.time.Duration;
 
+@Component
 public class FirstPage extends AbstractPage {
 
     private final WidgetOne widgetOne;
     private final WidgetTwo widgetTwo;
 
-    public FirstPage(AppiumDriver appiumDriver) {
-        super(appiumDriver);
-        this.widgetOne = new WidgetOne(appiumDriver);
-        this.widgetTwo = new WidgetTwo(appiumDriver);
+    public FirstPage(DriverFactory driverFactory) {
+        super(driverFactory);
+        this.widgetOne = new WidgetOne(driver);
+        this.widgetTwo = new WidgetTwo(driver);
     }
 
     public void clickNextButton() {

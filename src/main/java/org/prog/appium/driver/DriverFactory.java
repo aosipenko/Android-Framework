@@ -5,25 +5,22 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.federatedcredentialmanagement.HasFederatedCredentialManagement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.net.URL;
 
+@Component
 public class DriverFactory {
 
     private final String appPackage;
     private final String appActivity;
     private final String appFileName;
-    private static final DriverFactory instance = new DriverFactory();
 
-    private DriverFactory() {
+    public DriverFactory() {
         this.appPackage = System.getProperty("package", "com.example.basicactivity");
         this.appActivity = System.getProperty("activity", "MainActivity");
         this.appFileName = System.getProperty("appFile", "app-debug.apk");
-    }
-
-    public static DriverFactory getInstance() {
-        return instance;
     }
 
     public AndroidDriver getDriver(DriverType driverType) {

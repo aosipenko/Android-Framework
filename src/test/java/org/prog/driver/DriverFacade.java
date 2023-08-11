@@ -8,21 +8,18 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.prog.appium.driver.DriverFactory;
 import org.prog.appium.driver.DriverType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 
+@Component
 public class DriverFacade {
 
-    private final static DriverFacade instance = new DriverFacade();
+    private AndroidDriver driver;
 
-    private final AndroidDriver driver;
-
-    private DriverFacade() {
-        this.driver = DriverFactory.getInstance().getDriver(DriverType.APPIUM_LOCAL);
-    }
-
-    public static DriverFacade getInstance() {
-        return instance;
+    public DriverFacade(DriverFactory driverFactory) {
+//        this.driver = driverFactory.getDriver(DriverType.APPIUM_LOCAL);
     }
 
     public AndroidDriver getDriver() {

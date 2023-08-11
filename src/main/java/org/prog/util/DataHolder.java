@@ -1,20 +1,15 @@
 package org.prog.util;
 
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.HashMap;
 
+@Component
 public class DataHolder {
 
-    private final static DataHolder instance = new DataHolder();
-
-    private final HashMap<String, Object> holder;
-
-    private DataHolder() {
-        holder = new HashMap();
-    }
-
-    public static DataHolder getInstance() {
-        return instance;
-    }
+    private final HashMap<String, Object> holder = new HashMap<>();
 
     public void add(String alias, Object o) {
         holder.put(alias, o);
@@ -30,5 +25,15 @@ public class DataHolder {
 
     public void reset() {
         holder.clear();
+    }
+
+    @PostConstruct
+    public void postCreate() {
+        System.out.println("Data Holder Created");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("Data Holder about to be destroyed");
     }
 }

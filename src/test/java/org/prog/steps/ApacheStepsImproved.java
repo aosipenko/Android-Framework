@@ -3,58 +3,62 @@ package org.prog.steps;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.SneakyThrows;
-import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.NameValuePair;
-import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
-import org.prog.dto.ResultsDto;
+import org.prog.beans.MyBean;
 import org.prog.rest.RestClient;
 import org.prog.util.DataHolder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ApacheStepsImproved {
 
+    @Autowired
+    @Qualifier("beanOne")
+    private MyBean beanOne;
+
+    @Autowired
+    @Qualifier("beanTwo")
+    private MyBean beanTwo;
+
+    @Autowired
+    private DataHolder dataHolder;
+
     private final RestClient restClient = new RestClient();
 
     @Given("A request to {string} as {string}")
     public void addHost(String host, String alias) {
-        DataHolder.getInstance().add(alias, host);
+        beanOne.setBeanValue("Test value for beanOne alias " + alias);
+        beanTwo.setBeanValue("Test value for beanTwo alias " + alias);
+        dataHolder.add(alias, host);
     }
 
     @Given("A path {string} as {string}")
     public void addPath(String path, String alias) {
-        DataHolder.getInstance().add(alias, path);
+        dataHolder.add(alias, path);
     }
 
     @Given("Query params {string}:")
     public void addParams(String alias, DataTable dataTable) {
         List<BasicNameValuePair> queryParams = dataTable.asMap().entrySet().stream().map(
-                entry -> new BasicNameValuePair(entry.getKey(), entry.getValue()))
+                        entry -> new BasicNameValuePair(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
-        DataHolder.getInstance().add(alias, queryParams);
+        dataHolder.add(alias, queryParams);
     }
 
     @When("I make request to {string} at {string} with {string} as {string}")
     public void makeRequest(String hostAlias, String pathAlias, String queryAlias, String responseAlias) {
-        String hostName = DataHolder.getInstance().getWithDynamicType(hostAlias);
-        String path = DataHolder.getInstance().getWithDynamicType(pathAlias);
-        List<NameValuePair> queryParams = DataHolder.getInstance().getWithDynamicType(queryAlias);
+        String hostName = dataHolder.getWithDynamicType(hostAlias);
+        String path = dataHolder.getWithDynamicType(pathAlias);
+        List<NameValuePair> queryParams = dataHolder.getWithDynamicType(queryAlias);
 
-        DataHolder.getInstance().add(responseAlias, restClient.doGet(hostName, path, queryParams));
+        dataHolder.add(responseAlias, restClient.doGet(hostName, path, queryParams));
     }
 
-    @SneakyThrows
-    @Then("Print response {string}")
-    public void printResponse(String responseAlias) {
-        HttpEntity responseEntity = DataHolder.getInstance().getWithDynamicType(responseAlias);
-        ResultsDto dto = mapper().readValue(EntityUtils.toString(responseEntity), ResultsDto.class);
-        dto.getResults().forEach(r -> System.out.println(r.getName().getFirst()));
-    }
 
     private ObjectMapper mapper() {
         return new ObjectMapper();

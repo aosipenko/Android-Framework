@@ -3,12 +3,15 @@ package org.prog.pages;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.prog.appium.driver.DriverFactory;
+import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
+@Component
 public class SecondPage extends AbstractPage {
 
-    public SecondPage(AppiumDriver appiumDriver) {
-        super(appiumDriver);
+    public SecondPage(DriverFactory driverFactory) {
+        super(driverFactory);
     }
 
     public void clickBackButton() {
