@@ -32,8 +32,6 @@ public class ApacheStepsImproved {
 
     @Given("A request to {string} as {string}")
     public void addHost(String host, String alias) {
-        beanOne.setBeanValue("Test value for beanOne alias " + alias);
-        beanTwo.setBeanValue("Test value for beanTwo alias " + alias);
         dataHolder.add(alias, host);
     }
 
