@@ -7,7 +7,7 @@ public class WidgetTwo extends AbstractWidget {
         super(driver);
     }
 
-    public void somWidgetAction(){
+    public void somWidgetAction() {
 
     }
 }

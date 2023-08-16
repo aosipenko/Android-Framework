@@ -21,14 +21,14 @@ public class MySecondTest {
     @Autowired
     private SecondPage secondPage;
 
-//    @Test
+    //    @Test
     public void clickNextAndBackButtons() {
         firstPage.clickNextButton();
         secondPage.clickBackButton();
         Assert.assertEquals(firstPage.getTextContent(), "First text fragment");
     }
 
-//    @Test
+    //    @Test
     public void popupTest() {
         firstPage.clickEmail();
         firstPage.waitForPopup("Replace with your own action");
